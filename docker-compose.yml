@@ -10,11 +10,19 @@ services:
     depends_on:
       - db
       - elasticsearch
+    environment:
+      DB_HOST: db
+      DB_USERNAME: user
+      DB_PASSWORD: password
   db:
     image: mysql:8.0.33
     environment:
       MYSQL_ROOT_PASSWORD: root_password
-      MYSQL_DATABASE: prompts
+      MYSQL_DATABASE: prompt_finder_development
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    volumes:
+      - dbdata:/var/lib/mysql
   elasticsearch:
     image: elasticsearch:8.7.0
     environment:
@@ -28,4 +36,5 @@ services:
     volumes:
       - esdata:/usr/share/elasticsearch/data
 volumes:
+  dbdata:
   esdata:

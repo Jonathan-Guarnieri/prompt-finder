@@ -51,6 +51,9 @@ gem "bootsnap", require: false
 # Intelligent search made easy with Rails and Elasticsearch or OpenSearch
 gem 'searchkick', '~> 5.2', '>= 5.2.3'
 
+# This gem contains the official Elasticsearch Ruby client.
+gem 'elasticsearch', '~> 8.7'
+
 # Makes http fun! Also, makes consuming restful web services dead easy.
 gem 'httparty', '~> 0.21.0'
 

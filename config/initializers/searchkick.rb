@@ -1,6 +1,6 @@
 module Elasticsearch
   class Client
-    def verify_with_version_or_header(body, version, headers)
+    def verify_with_version_or_header(version, headers)
       @verified = true
     end
   end

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Search Prompts</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .search-box {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      background-color: #f0f0f0;
+      border-radius: 4px;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Search Prompts</h1>
+
+    <%= form_with url: prompts_path, method: :get, local: true, html: { class: 'search-box' } do %>
+      <%= label_tag :query, "Enter keywords:", style: "align-self: center;" %>
+      <%= text_field_tag :query, params[:query], placeholder: "Keywords..." %>
+      <%= submit_tag "Search", class: "button" %>
+    <% end %>
+
+    <% if @prompts.any? %>
+      <p><%= pluralize(@prompts.size, 'result') %> found</p>
+    <% elsif params[:query].present? %>
+      <p>No results found</p>
+    <% end %>
+
+    <ul>
+      <% @prompts.each do |prompt| %>
+        <li><%= prompt.content %></li>
+      <% end %>
+    </ul>
+  </div>
+</body>
+</html>

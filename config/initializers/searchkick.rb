@@ -1,12 +1,11 @@
-require 'elasticsearch/model'
-
-Rails.application.config.to_prepare do
-  Elasticsearch::Model.client = Elasticsearch::Client.new(
-    host: ENV['SEARCHBOX_URL']
-  )
-
+if Rails.env == 'production'
+  url = ENV["BONSAI_URL"]
+  transport_options = { request: { timeout: 250 } }
+  options = { hosts: url, retry_on_failure: true, transport_options: transport_options }
+  Searchkick.client = Elasticsearch::Client.new(options)
+else
   Searchkick.client = Elasticsearch::Client.new(
-    url: ENV['SEARCHBOX_URL'],
+    hosts: ENV['ELASTICSEARCH_HOST'],
     user: ENV['ELASTIC_USERNAME'],
     password: ENV['ELASTIC_PASSWORD'],
     log: Rails.env.development?

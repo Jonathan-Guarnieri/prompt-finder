@@ -98,10 +98,6 @@ GEM
       elasticsearch-api (= 8.7.0)
     elasticsearch-api (8.7.0)
       multi_json
-    elasticsearch-model (7.1.1)
-      activesupport (> 3)
-      elasticsearch (> 1)
-      hashie
     erubi (1.12.0)
     factory_bot (6.2.1)
       activesupport (>= 5.0.0)
@@ -275,7 +271,6 @@ DEPENDENCIES
   capybara
   debug
   elasticsearch (~> 8.7)
-  elasticsearch-model
   factory_bot_rails (~> 6.2)
   httparty (~> 0.21.0)
   importmap-rails
